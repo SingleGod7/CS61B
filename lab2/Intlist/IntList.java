@@ -90,7 +90,9 @@ public class IntList {
         ptr.rest = B;
         return A;
          */
-        if(A.rest == null){
+        if(A == null){
+            A = B;
+        }else if(A.rest == null){
              A.rest = B;
         }else{
             IntList.dcatenate(A.rest,B);
