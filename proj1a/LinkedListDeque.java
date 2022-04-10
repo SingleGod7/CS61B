@@ -1,4 +1,3 @@
-
 public class LinkedListDeque<T> {
     private class LinkedNode{
         public T item;
@@ -97,5 +96,20 @@ public class LinkedListDeque<T> {
             index -= 1;
         }
         return x.item;
+    }
+
+    private T getRecursive(int index, LinkedNode x){
+        if(index == 0){
+            return x.item;
+        }else if (x.next == this.lastSentinel){
+            return null;
+        }else{
+            return getRecursive(index - 1, x.next);
+        }
+    }
+
+    public T getRecursive(int index){
+        LinkedNode x = this.firstSentinel.next;
+        return getRecursive(index, x);
     }
 }
