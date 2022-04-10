@@ -19,27 +19,20 @@ public class LinkedListDeque<T> {
     public LinkedListDeque(){
         this.size = 0;
         this.firstSentinel = new LinkedNode(null, null, null);
-        this.lastSentinel = new LinkedNode(null, firstSentinel,null);
-        this.firstSentinel.next = lastSentinel;
-    }
-
-    public LinkedListDeque(T value){
-        this.size = 1;
-        LinkedNode first = new LinkedNode(value, null, null);
-        this.firstSentinel = new LinkedNode(null, null, first);
-        this.lastSentinel = new LinkedNode(null, first, null);
-        first.next = this.lastSentinel;
-        first.prev = this.firstSentinel;
+        this.lastSentinel = new LinkedNode(null, this.firstSentinel,null);
+        this.firstSentinel.next = this.lastSentinel;
     }
 
     /* add an item at the first of the Linkedlist */
     public void addFirst(T item){
         this.size += 1;
         this.firstSentinel.next = new LinkedNode(item, this.firstSentinel, this.firstSentinel.next);
+        this.firstSentinel.next.next.prev = this.firstSentinel.next;
     }
     public void addLast(T item){
         this.size += 1;
         this.lastSentinel.prev = new LinkedNode(item, this.lastSentinel.prev, this.lastSentinel);
+        this.lastSentinel.prev.prev.next = this.lastSentinel.prev;
     }
 
     public boolean isEmpty(){
@@ -68,6 +61,7 @@ public class LinkedListDeque<T> {
         if(this.isEmpty()){
             return null;
         } else {
+            this.size -= 1;
             LinkedNode removedNode = this.firstSentinel.next;
             this.firstSentinel.next = this.firstSentinel.next.next;
             this.firstSentinel.next.prev = this.firstSentinel;
@@ -79,6 +73,7 @@ public class LinkedListDeque<T> {
         if(this.isEmpty()){
             return null;
         } else {
+            this.size -= 1;
             LinkedNode removedNode = this.lastSentinel.prev;
             this.lastSentinel.prev = this.lastSentinel.prev.prev;
             this.lastSentinel.prev.next = this.lastSentinel;
@@ -109,6 +104,9 @@ public class LinkedListDeque<T> {
     }
 
     public T getRecursive(int index){
+        if(isEmpty()){
+            return null;
+        }
         LinkedNode x = this.firstSentinel.next;
         return getRecursive(index, x);
     }
