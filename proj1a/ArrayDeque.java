@@ -96,7 +96,7 @@ public class ArrayDeque<T> {
     }
 
     public T removeLast() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         this.nextLast = leftPosition(this.nextLast);
