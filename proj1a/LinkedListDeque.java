@@ -1,10 +1,10 @@
 public class LinkedListDeque<T> {
-    private class LinkedNode{
-        public T item;
-        public LinkedNode next;
-        public LinkedNode prev;
+    private class LinkedNode {
+        private T item;
+        private LinkedNode next;
+        private LinkedNode prev;
 
-        public LinkedNode(T value, LinkedNode prev, LinkedNode next){
+        public LinkedNode(T value, LinkedNode prev, LinkedNode next) {
             this.item = value;
             this.next = next;
             this.prev = prev;
@@ -16,40 +16,36 @@ public class LinkedListDeque<T> {
     private int size;
 
     /* initialize the empty linked list */
-    public LinkedListDeque(){
+    public LinkedListDeque() {
         this.size = 0;
         this.firstSentinel = new LinkedNode(null, null, null);
-        this.lastSentinel = new LinkedNode(null, this.firstSentinel,null);
+        this.lastSentinel = new LinkedNode(null, this.firstSentinel, null);
         this.firstSentinel.next = this.lastSentinel;
     }
 
     /* add an item at the first of the Linkedlist */
-    public void addFirst(T item){
+    public void addFirst(T item) {
         this.size += 1;
         this.firstSentinel.next = new LinkedNode(item, this.firstSentinel, this.firstSentinel.next);
         this.firstSentinel.next.next.prev = this.firstSentinel.next;
     }
-    public void addLast(T item){
+    public void addLast(T item) {
         this.size += 1;
         this.lastSentinel.prev = new LinkedNode(item, this.lastSentinel.prev, this.lastSentinel);
         this.lastSentinel.prev.prev.next = this.lastSentinel.prev;
     }
 
-    public boolean isEmpty(){
-        if(this.firstSentinel.next == this.lastSentinel){
-            return true;
-        } else{
-            return false;
-        }
+    public boolean isEmpty() {
+        return this.firstSentinel.next == this.lastSentinel;
     }
 
-    public int size(){
+    public int size() {
         return this.size;
     }
 
-    public void printDeque(){
+    public void printDeque() {
         LinkedNode x = this.firstSentinel;
-        if(x.next != this.lastSentinel){
+        if (x.next != this.lastSentinel) {
             x = x.next;
             System.out.print(x.item);
             System.out.print(" ");
@@ -57,8 +53,8 @@ public class LinkedListDeque<T> {
         System.out.print("\n");
     }
 
-    public T removeFirst(){
-        if(this.isEmpty()){
+    public T removeFirst() {
+        if (this.isEmpty()) {
             return null;
         } else {
             this.size -= 1;
@@ -69,8 +65,8 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public T removeLast(){
-        if(this.isEmpty()){
+    public T removeLast() {
+        if (this.isEmpty()) {
             return null;
         } else {
             this.size -= 1;
@@ -81,10 +77,10 @@ public class LinkedListDeque<T> {
         }
     }
 
-    public T get(int index){
+    public T get(int index) {
         LinkedNode x = this.firstSentinel;
-        while(index >= 0){
-            if(x.next == this.lastSentinel){
+        while (index >= 0) {
+            if (x.next == this.lastSentinel) {
                 return null;
             }
             x = x.next;
@@ -93,18 +89,18 @@ public class LinkedListDeque<T> {
         return x.item;
     }
 
-    private T getRecursive(int index, LinkedNode x){
-        if(index == 0){
+    private T getRecursive(int index, LinkedNode x) {
+        if (index == 0) {
             return x.item;
-        }else if (x.next == this.lastSentinel){
+        } else if (x.next == this.lastSentinel) {
             return null;
-        }else{
+        } else {
             return getRecursive(index - 1, x.next);
         }
     }
 
-    public T getRecursive(int index){
-        if(isEmpty()){
+    public T getRecursive(int index) {
+        if (isEmpty()) {
             return null;
         }
         LinkedNode x = this.firstSentinel.next;
