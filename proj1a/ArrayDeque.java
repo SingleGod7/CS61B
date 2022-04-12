@@ -36,7 +36,7 @@ public class ArrayDeque<T> {
 
         int start = newArraySize / 4;
         int offset = rightPosition(this.nextFirst);
-        for(int i = 0;i < this.size; i++) {
+        for (int i = 0; i < this.size; i++) {
             newArray[start + i] = this.deque[(i + offset) % oldArraySize];
         }
 
@@ -48,20 +48,20 @@ public class ArrayDeque<T> {
 
     public void addFirst(T item) {
         deque[this.nextFirst] = item;
+        this.size += 1;
         this.nextFirst = leftPosition(this.nextFirst);
-        if(this.nextFirst == this.nextLast) {
+        if (this.nextFirst == this.nextLast) {
             resize(this.arraySize * 2);
         }
-        this.size += 1;
     }
 
     public void addLast(T item) {
         deque[this.nextLast] = item;
+        this.size += 1;
         this.nextLast = rightPosition(this.nextLast);
-        if(this.nextFirst == this.nextLast) {
+        if (this.nextFirst == this.nextLast) {
             resize(this.arraySize * 2);
         }
-        this.size += 1;
     }
 
     public boolean isEmpty() {
@@ -75,7 +75,7 @@ public class ArrayDeque<T> {
 
     public void  printDeque() {
         int start = rightPosition(this.nextFirst);
-        for(int i = 0; i < this.size; i++) {
+        for (int i = 0; i < this.size; i++) {
             System.out.print(this.deque[(i + start) % this.arraySize]);
             System.out.print(" ");
         }
@@ -83,13 +83,13 @@ public class ArrayDeque<T> {
     }
 
     public T removeFirst() {
-        if(isEmpty()) {
+        if (isEmpty()) {
             return null;
         }
         this.nextFirst = rightPosition(this.nextFirst);
         this.size -= 1;
         T valueRemoved = this.deque[this.nextFirst];
-        if(this.size * 4 <= this.arraySize && this.arraySize > 8) {
+        if (this.size * 4 <= this.arraySize && this.arraySize > 8) {
             resize(this.arraySize / 2);
         }
         return valueRemoved;
@@ -102,7 +102,7 @@ public class ArrayDeque<T> {
         this.nextLast = leftPosition(this.nextLast);
         this.size -= 1;
         T valueRemoved = this.deque[this.nextLast];
-        if(this.size() * 4 <= this.arraySize && this.arraySize > 8) {
+        if (this.size() * 4 <= this.arraySize && this.arraySize > 8) {
             resize(this.arraySize / 2);
         }
         return valueRemoved;
@@ -112,4 +112,4 @@ public class ArrayDeque<T> {
         return this.deque[(rightPosition(this.nextFirst) + index) % this.arraySize];
     }
 
-    }
+}
