@@ -130,6 +130,7 @@ public class IntList {
     }
 
     public static IntList reverse(IntList A) {
+        /* iterate version of the reverse method
         IntList first = null;
         IntList second = A;
         while (second != null) {
@@ -139,6 +140,14 @@ public class IntList {
             second = temp;
         }
         return first;
+         */
+        if (A == null || A.rest == null) {
+            return A;
+        }
+        IntList finalLinkedList = reverse(A.rest);
+        A.rest.rest = A ;
+        A.rest = null;
+        return finalLinkedList;
     }
 
 
