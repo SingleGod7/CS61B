@@ -10,7 +10,7 @@ public class TestArrayDequeGold {
         StringBuffer msg = new StringBuffer();
 
         //Test random operation
-        for (Integer i = 0; i < 20; i++) {
+        for (Integer i = 0; i < 500; i++) {
             double probability = StdRandom.uniform();
             if (probability > 0.75) {
                 x.addFirst(i);
@@ -28,7 +28,7 @@ public class TestArrayDequeGold {
                 assertEquals(msg.toString(), y.removeLast(), x.removeLast());
             } else if (y.size() > 0) {
                 msg.append("removeFirst()\n");
-                assertEquals(msg.toString(), y.removeFirst(), y.removeFirst());
+                assertEquals(msg.toString(), y.removeFirst(), x.removeFirst());
             }
         }
 
