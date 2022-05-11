@@ -36,7 +36,7 @@ public class RoomGenerator {
     }
 
     public void roomGenerator() {
-        int times = 100;
+        int times = 15;
         for (int i = 0; i < times; i++) {
             Room newRoom = randomRoom();
             if (isValidRoom(newRoom)) {
