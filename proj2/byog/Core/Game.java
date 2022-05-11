@@ -47,8 +47,8 @@ public class Game {
         long randomSeed = Long.parseLong(m.group(1));
         Random random = new Random(randomSeed);
 
-        this.WIDTH = random.nextInt(50,200);
-        this.HEIGHT = random.nextInt(50,200);
+        this.WIDTH = random.nextInt(150) + 50;
+        this.HEIGHT = random.nextInt(150) + 50;
 
 
         TETile[][] world = new TETile[WIDTH][HEIGHT];
