@@ -102,7 +102,7 @@ public class MemoryGameSolution {
             input += String.valueOf(key);
             drawFrame(input);
         }
-        StdDraw.pause(500);
+        StdDraw.pause(1000);
         return input;
     }
 

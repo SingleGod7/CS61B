@@ -2,12 +2,19 @@ package byog.Core;
 
 import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
+import byog.TileEngine.Tileset;
+import edu.princeton.cs.algs4.In;
+
+import java.util.Random;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.IntStream;
 
 public class Game {
     TERenderer ter = new TERenderer();
     /* Feel free to change the width and height. */
-    public static final int WIDTH = 80;
-    public static final int HEIGHT = 30;
+    public int WIDTH;
+    public int HEIGHT;
 
     /**
      * Method used for playing a fresh game. The game should start from the main menu.
@@ -32,7 +39,29 @@ public class Game {
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
-        TETile[][] finalWorldFrame = null;
-        return finalWorldFrame;
+        String digit = "([0-9]+)";
+
+        Pattern r = Pattern.compile(digit);
+        Matcher m = r.matcher(input);
+        m.find();
+        int randomSeed = Integer.parseInt(m.group(1));
+        Random random = new Random(randomSeed);
+
+        this.WIDTH = random.nextInt(200);
+        this.HEIGHT = random.nextInt(200);
+
+
+        TETile[][] world = new TETile[WIDTH][HEIGHT];
+
+        WorldGenerator x = new WorldGenerator(world, randomSeed);
+
+        for (int i = 0; i < WIDTH; i++) {
+            for (int j = 0; j < HEIGHT; j++) {
+                world[i][j] = Tileset.NOTHING;
+            }
+        }
+        x.worldGenerate();
+
+        return world;
     }
 }
