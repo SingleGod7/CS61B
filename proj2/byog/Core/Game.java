@@ -9,7 +9,6 @@ import edu.princeton.cs.algs4.StdDraw;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.IntStream;
 
 public class Game {
     TERenderer ter = new TERenderer();
@@ -36,7 +35,7 @@ public class Game {
      * @return the 2D TETile[][] representing the state of the world
      */
     public TETile[][] playWithInputString(String input) {
-        // TODO: Fill out this method to run the game using the input passed in,
+        // Fill out this method to run the game using the input passed in,
         // and return a 2D tile representation of the world that would have been
         // drawn if the same inputs had been given to playWithKeyboard().
 
@@ -48,8 +47,8 @@ public class Game {
         long randomSeed = Long.parseLong(m.group(1));
         Random random = new Random(randomSeed);
 
-        this.WIDTH = random.nextInt(200);
-        this.HEIGHT = random.nextInt(200);
+        this.WIDTH = random.nextInt(50,200);
+        this.HEIGHT = random.nextInt(50,200);
 
 
         TETile[][] world = new TETile[WIDTH][HEIGHT];
