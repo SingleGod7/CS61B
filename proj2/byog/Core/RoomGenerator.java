@@ -14,7 +14,7 @@ public class RoomGenerator {
     public List<Room> roomList;
     private Random random;
 
-    public RoomGenerator(TETile[][] world, int randomSeed) {
+    public RoomGenerator(TETile[][] world, long randomSeed) {
         this.world = world;
         this.random = new Random(randomSeed);
         this.worldWidth = world.length;

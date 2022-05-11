@@ -12,7 +12,7 @@ public class WorldGenerator {
     private int worldWidth;
     private Random random;
 
-    WorldGenerator(TETile[][] world, int randomSeed) {
+    WorldGenerator(TETile[][] world, long randomSeed) {
         this.world = world;
         this.worldWidth = world.length;
         this.worldHeight = world[0].length;

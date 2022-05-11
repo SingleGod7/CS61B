@@ -17,7 +17,7 @@ public class testWorldGenerator {
             }
         }
 
-        WorldGenerator z = new WorldGenerator(world, 1124311);
+        WorldGenerator z = new WorldGenerator(world, 1234);
 
         z.worldGenerate();
 

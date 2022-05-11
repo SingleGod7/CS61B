@@ -14,7 +14,7 @@ public class HallwayGenerator {
     private Random random;
     private Deque<Position> dotDeque;
 
-    HallwayGenerator(TETile[][] world, int randomSeed) {
+    HallwayGenerator(TETile[][] world, long randomSeed) {
         this.world = world;
         this.worldWidth = world.length;
         this.worldHeight = world[0].length;

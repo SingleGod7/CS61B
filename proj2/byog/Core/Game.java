@@ -4,6 +4,7 @@ import byog.TileEngine.TERenderer;
 import byog.TileEngine.TETile;
 import byog.TileEngine.Tileset;
 import edu.princeton.cs.algs4.In;
+import edu.princeton.cs.algs4.StdDraw;
 
 import java.util.Random;
 import java.util.regex.Matcher;
@@ -44,7 +45,7 @@ public class Game {
         Pattern r = Pattern.compile(digit);
         Matcher m = r.matcher(input);
         m.find();
-        int randomSeed = Integer.parseInt(m.group(1));
+        long randomSeed = Long.parseLong(m.group(1));
         Random random = new Random(randomSeed);
 
         this.WIDTH = random.nextInt(200);
