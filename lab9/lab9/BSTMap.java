@@ -140,6 +140,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
      */
     @Override
     public V remove(K key) {
+        /* Wtf! the first version of remove
         Node preNode = null;
         Node curNode = this.root;
         int direction = 0;//relationship between pre and cur, -1 denote the left,1 denote the right
@@ -208,6 +209,40 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         curNode.key = minNode.key;
         curNode.value = minNode.value;
 
+        return returnValue;
+        */
+        Node curNode = this.root;
+        while (curNode != null && curNode.key.compareTo(key) != 0) {
+            if (curNode.key.compareTo(key) > 0) {
+                curNode = curNode.left;
+            } else {
+                curNode = curNode.right;
+            }
+        }
+
+        if (curNode == null) {
+            return null;
+        }
+
+        V returnValue = curNode.value;
+
+        if (curNode.left != null && curNode.right != null) {
+            Node min =removeMin(curNode.right);
+            curNode.key = min.key;
+            curNode.value = min.value;
+        } else if (curNode.left != null) {
+            curNode.key = curNode.left.key;
+            curNode.value = curNode.left.value;
+            curNode.right = curNode.left.right;
+            curNode.left = curNode.left.left;
+            this.size -= 1;
+        } else {
+            curNode.key = curNode.right.key;
+            curNode.value = curNode.right.value;
+            curNode.left = curNode.right.left;
+            curNode.right = curNode.right.right;
+            this.size -= 1;
+        }
         return returnValue;
     }
 
