@@ -160,6 +160,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         if (curNode.left == null && curNode.right ==null) {
             if (preNode == null) {
                 this.clear();
+                return curNode.value;
             } else {
                 if (direction < 0) {
                     preNode.left = null;
