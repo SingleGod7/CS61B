@@ -264,8 +264,9 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     private Node removeMin(Node p) {
         if (p.left == null) {
+            Node min = new Node(p.key, p.value);
             remove(p.key);
-            return p;
+            return min;
         } else {
             return removeMin(p.left);
         }
@@ -291,17 +292,11 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
     public static void main(String[] args) {
         BSTMap<String, Integer> a = new BSTMap<>();
-        a.put("Zh", 0);
-        a.put("an", 1);
-        a.put("gY", 2);
-        a.put("ua", 3);
-        a.put("nC", 4);
-        a.put("he", 5);
-        a.put("n", 6);
-        a.remove("sdfas");
-        a.remove("Zh");
-        a.remove("nC");
-        a.remove("n");
+        a.put("B", 0);
+        a.put("C", 1);
+        a.put("A", 1);
+        a.put("D", 2);
+        a.remove("B");
         StringBuilder b = new StringBuilder();
         for (String i : a) {
             b.append(i + " ");
