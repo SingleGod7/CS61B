@@ -120,7 +120,8 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         Set<K> keyBSTMap = new HashSet<>();
         if (p.left != null) {
             keyBSTMap.addAll(keySetHelper(p.left));
-        } else if(p.right != null) {
+        }
+        if(p.right != null) {
             keyBSTMap.addAll(keySetHelper(p.right));
         }
         keyBSTMap.add(p.key);
@@ -173,6 +174,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         if (curNode.left == null && curNode.right != null) {
             if (preNode == null) {
                 this.root = curNode.right;
+                this.size -= 1;
                 return curNode.value;
             }
             if (direction < 0) {
@@ -186,6 +188,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
 
         if (curNode.left != null && curNode.right == null) {
             if (preNode == null) {
+                this.size -= 1;
                 this.root = curNode.left;
                 return curNode.value;
             }
