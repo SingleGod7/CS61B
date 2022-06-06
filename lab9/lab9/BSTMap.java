@@ -212,11 +212,16 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         return returnValue;
         */
         Node curNode = this.root;
+        Node preNode = null;
+        int pos = 0;
         while (curNode != null && curNode.key.compareTo(key) != 0) {
+            preNode = curNode;
             if (curNode.key.compareTo(key) > 0) {
                 curNode = curNode.left;
+                pos = -1;
             } else {
                 curNode = curNode.right;
+                pos = 1;
             }
         }
 
@@ -236,11 +241,22 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
             curNode.right = curNode.left.right;
             curNode.left = curNode.left.left;
             this.size -= 1;
-        } else {
+        } else if (curNode.right != null){
             curNode.key = curNode.right.key;
             curNode.value = curNode.right.value;
             curNode.left = curNode.right.left;
             curNode.right = curNode.right.right;
+            this.size -= 1;
+        } else {
+            if (preNode == null) {
+                this.root = null;
+            } else {
+                if (pos < 0) {
+                    preNode.left = null;
+                } else {
+                    preNode.right = null;
+                }
+            }
             this.size -= 1;
         }
         return returnValue;
@@ -285,6 +301,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map61B<K, V> {
         a.remove("sdfas");
         a.remove("Zh");
         a.remove("nC");
+        a.remove("n");
         StringBuilder b = new StringBuilder();
         for (String i : a) {
             b.append(i + " ");
