@@ -29,15 +29,16 @@ public class PercolationStats {
             }
             simulationResult[i] = (double) simulation.numberOfOpenSites() / (double) (N * N);
         }
+
+        this.mean = this.mean = StdStats.mean(simulationResult);
+        this.stddev = this.stddev = StdStats.stddev(simulationResult);
     }
 
     public double mean() {
-        this.mean = StdStats.mean(simulationResult);
         return this.mean;
     }
 
     public double stddev() {
-        this.stddev = StdStats.stddev(simulationResult);
         return this.stddev;
     }
 

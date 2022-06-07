@@ -90,10 +90,7 @@ public class Percolation {
     }
 
     private void checkValidIndex(int index) {
-        if (index < 0) {
-            throw new java.lang.IllegalArgumentException();
-        }
-        if (index > (N - 1)) {
+        if (index > (N - 1) || index < 0) {
             throw new java.lang.IndexOutOfBoundsException();
         }
     }
