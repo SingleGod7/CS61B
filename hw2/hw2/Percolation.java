@@ -9,14 +9,17 @@ public class Percolation {
     private int N;
     private int openCnt;
 
-    public Percolation(int N){
+    public Percolation(int N) {
+        if (N <= 0) {
+            throw new IllegalArgumentException();
+        }
         percolationGraph = new WeightedQuickUnionUF(N * N);
         fullGraph = new WeightedQuickUnionUF(N * N);
         this.N = N;
         this.openGraph = new boolean[N][N];
 
         //init the openGraph
-        for (int i = 0 ; i < N; i++) {
+        for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
                 openGraph[i][j] = false;
             }
@@ -32,7 +35,11 @@ public class Percolation {
 
     public void open(int row, int col) {
         checkValidCoordinate(row, col);
-        openGraph[row][col] = true;
+        if (openGraph[row][col]) {
+            return;
+        } else {
+            openGraph[row][col] = true;
+        }
         openCnt += 1;
         int[] direction = {-1, 1};
         int index = row * N + col;
@@ -54,12 +61,14 @@ public class Percolation {
     }
 
     public boolean isFull(int row, int col) {
+        checkValidCoordinate(row, col);
+        int index = row * N + col;
         if (row == 0) {
             return openGraph[row][col];
-        } else if (row == N - 1){
-            return fullGraph.connected(0, row * N + col) && openGraph[row][col] && percolationGraph.connected(0, row * N + col);
+        } else if (row == N - 1) {
+            return openGraph[row][col] && percolationGraph.connected(0, index);
         } else {
-            return fullGraph.connected(0, row * N + col) && percolationGraph.connected(0, row * N + col);
+            return fullGraph.connected(0, index) && percolationGraph.connected(0, index);
         }
     }
 
@@ -68,6 +77,9 @@ public class Percolation {
     }
 
     public boolean percolates() {
+        if (N == 1) {
+            return openGraph[0][0];
+        }
         return fullGraph.connected(0, N * (N - 1));
     }
 
@@ -84,9 +96,5 @@ public class Percolation {
         if (index > (N - 1)) {
             throw new java.lang.IndexOutOfBoundsException();
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }

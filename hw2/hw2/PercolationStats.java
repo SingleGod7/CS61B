@@ -1,6 +1,5 @@
 package hw2;
 
-import edu.princeton.cs.introcs.StdDraw;
 import edu.princeton.cs.introcs.StdRandom;
 import edu.princeton.cs.introcs.StdStats;
 
@@ -18,7 +17,7 @@ public class PercolationStats {
         this.T = T;
         this.simulationResult = new double[T];
 
-        for(int i = 0; i < T; i++) {
+        for (int i = 0; i < T; i++) {
             Percolation simulation = pf.make(N);
             while (!simulation.percolates()) {
                 int col = StdRandom.uniform(N);
@@ -27,10 +26,7 @@ public class PercolationStats {
                     continue;
                 }
                 simulation.open(row, col);
-
             }
-            PercolationVisualizer.draw(simulation, N);
-            StdDraw.pause(1000);
             simulationResult[i] = (double) simulation.numberOfOpenSites() / (double) (N * N);
         }
     }
