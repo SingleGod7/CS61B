@@ -94,4 +94,8 @@ public class Percolation {
             throw new java.lang.IndexOutOfBoundsException();
         }
     }
+
+    public static void main(String[] args) {
+
+    }
 }
