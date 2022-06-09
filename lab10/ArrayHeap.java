@@ -129,7 +129,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
 
         int swapNode;
         int minValue = min(index, min(leftIndex(index), rightIndex(index)));
-        if (leftChild !=null && minValue == leftIndex(index)) {
+        if (leftChild != null && minValue == leftIndex(index)) {
             swapNode = leftIndex(index);
         } else if (rightChild != null && minValue == rightIndex(index)) {
             swapNode = rightIndex(index);
@@ -281,7 +281,7 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
             myPriority = priority;
         }
 
-        public T item(){
+        public T item() {
             return myItem;
         }
 
