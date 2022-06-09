@@ -186,11 +186,11 @@ public class ArrayHeap<T> implements ExtrinsicPQ<T> {
         } else {
             T removeValue = contents[1].myItem;
             Node lastNode = contents[size];
-            contents[size] = null;
             size -= 1;
             contents[1].myItem = lastNode.item();
             contents[1].myPriority = lastNode.priority();
             sink(1);
+            contents[size + 1] = null;
             return removeValue;
         }
     }
