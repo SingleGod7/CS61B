@@ -70,7 +70,7 @@ public class Board implements WorldState {
         int hammingCnt = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < N; j++) {
-                if (this.tileAt(i, j) != N * i + j + 1) {
+                if (this.tileAt(i, j) != 0 && this.tileAt(i, j) != N * i + j + 1) {
                     hammingCnt += 1;
                 }
             }
