@@ -2,7 +2,9 @@ package hw4.puzzle;
 
 import edu.princeton.cs.algs4.MinPQ;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Deque;
+import java.util.ArrayDeque;
 
 public class Solver {
     private MinPQ<SearchNode> aStarSearch;
